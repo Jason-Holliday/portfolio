@@ -1,2 +1,2 @@
 # portfolio
-Dies ist mein Portfolio als Frontend Entwickler, in dem ich meine Fähigkeiten und Erfahrungen in Webentwicklung und Design präsentiere. Hier findest du einen Überblick über meine Projekte, meine technischen Fähigkeiten und meine berufliche Reise. Dieses Portfolio zeigt, was ich für dich leisten kann.
+Eine Webseite, die eine Übersicht meiner Projekte bietet, sowie eine Admin-Seite, auf der ich Titel, Beschreibung, GitHub-URL und ein Bild für jedes Projekt hinzufügen kann.
