@@ -139,8 +139,11 @@ app.delete('/projects/:id', async (req, res) => {
     }
 });
 
-// 🔹 Server starten
-const PORT = process.env.PORT || 3000;
+// Definiere den HOST und PORT
+const HOST = 'localhost';  // Setze den Host auf 'localhost' oder die gewünschte IP-Adresse
+const PORT = process.env.PORT || 3000;  // Wenn keine Umgebungsvariable für den Port gesetzt ist, wird 3000 verwendet
+
+// Server starten
 app.listen(PORT, HOST, () => {
-    console.log(`Server läuft auf Port ${port}`);
+    console.log(`Server läuft auf http://${HOST}:${PORT}`);
 });
