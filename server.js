@@ -141,7 +141,6 @@ app.delete('/projects/:id', async (req, res) => {
 
 // 🔹 Server starten
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST;
 app.listen(PORT, HOST, () => {
-    console.log(`✅ Server läuft auf http://${HOST}:${PORT}`);
+    console.log(`Server läuft auf Port ${port}`);
 });
