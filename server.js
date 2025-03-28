@@ -144,11 +144,10 @@ app.get('/', (req, res) => {
 })
 
 // Definiere den HOST und PORT
-const HOST = process.env.HOST;  
 const PORT = process.env.PORT || 3000;  
 
 // Server starten
-app.listen(PORT, HOST, () => {
-    console.log(`Server läuft auf http://${HOST}:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server läuft auf Port ${PORT}`);
 });
 
