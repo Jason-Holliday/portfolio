@@ -11,14 +11,15 @@ dotenv.config();
 
 const app = express(); // Erstellt den Express-Server
 
-// Middleware zum Bereitstellen von statischen Dateien (z. B. Frontend)
-app.use(express.static('public')); // Stellt Dateien aus dem 'public'-Ordner bereit
-
-// Middleware und weitere Routen
-app.use(cors({
-    origin: '*', // Erlaube Anfragen von jeder URL (optional anpassen)
+// CORS-Konfiguration
+const corsOptions = {
+    origin: ['https://jasonholliday.dev', 'https://www.jasonholliday.dev'], // Erlaube nur Anfragen von deiner Domain
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Erlaubte Methoden
-}));
+};
+
+// Middleware für CORS und statische Dateien
+app.use(cors(corsOptions));  // CORS mit der richtigen Konfiguration
+app.use(express.static('public')); // Stellt Dateien aus dem 'public'-Ordner bereit
 
 // Middleware zum Parsen von URL-codierten Daten (für FormData)
 app.use(express.urlencoded({ extended: true }));  // Hinzugefügt, um FormData zu unterstützen

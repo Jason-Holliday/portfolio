@@ -107,8 +107,6 @@ html,body
     display: none;
 }
 
-
-
 section{
     padding: 8rem 12%;
     width: 100%;
@@ -155,11 +153,18 @@ section{
     color: var(--cta-btn);
 }
 
-.home img{
-    width: 20vw;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #fff;
+.img-container {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.profile-image {
+    width: 300px; 
+    height: 500px; 
+    object-fit: cover; 
+    border-radius: 25px; 
+    border: 5px solid #fff; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
 }
 
 .infoBox{
