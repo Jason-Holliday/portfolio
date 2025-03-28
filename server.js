@@ -11,6 +11,9 @@ dotenv.config();
 
 const app = express(); // Erstellt den Express-Server
 
+// Middleware zum Bereitstellen von statischen Dateien (z. B. Frontend)
+app.use(express.static('public')); // Stellt Dateien aus dem 'public'-Ordner bereit
+
 // Middleware und weitere Routen
 app.use(cors({
     origin: '*', // Erlaube Anfragen von jeder URL (optional anpassen)
@@ -43,7 +46,7 @@ app.post("/send-email", async (req, res) => {
         const mailOptions = {
             from: process.env.RECEIVER_EMAIL,
             to: process.env.RECEIVER_EMAIL,
-            subject:  `📩 Rückmeldung zur Bewerbung von  (${email})`,
+            subject: `📩 Rückmeldung zur Bewerbung von  (${email})`,
             text: `Absender: ${email}\n\nNachricht:\n${message}`,
             html: `
                     <h2>Neue Nachricht</h2>
@@ -67,7 +70,7 @@ app.post("/send-email", async (req, res) => {
 // Middleware zum Hochladen von Bildern
 const upload = multer();
 
-// 🔹 Route zum Hochladen von Bildern
+// Route zum Hochladen von Bildern
 app.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'Kein Bild hochgeladen!' });
@@ -84,7 +87,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     }
 });
 
-// 🔹 Route zum Abrufen der Projekte
+// Route zum Abrufen der Projekte
 app.get('/projects', async (req, res) => {
     try {
         const searchTerm = req.query.search || ''; // Falls kein Suchbegriff vorhanden, leere Zeichenkette
@@ -96,7 +99,7 @@ app.get('/projects', async (req, res) => {
     }
 });
 
-// 🔹 Route zum Speichern eines Projekts
+// Route zum Speichern eines Projekts
 app.post('/save-project', async (req, res) => {
     try {
         const projectData = req.body;
@@ -108,7 +111,7 @@ app.post('/save-project', async (req, res) => {
     }
 });
 
-// 🔹 Route zum Aktualisieren eines Projekts
+// Route zum Aktualisieren eines Projekts
 app.put('/projects/:id', async (req, res) => {
     const { id } = req.params;
     const updatedProject = req.body;
@@ -139,6 +142,7 @@ app.delete('/projects/:id', async (req, res) => {
     }
 });
 
+// Standard-Route, um sicherzustellen, dass der Server läuft
 app.get("/", (req, res) => {
     res.send("Server läuft!");
 });
@@ -148,7 +152,5 @@ const port = process.env.PORT || 3000;
 
 // Server starten
 app.listen(port, "0.0.0.0", function () {
-    // ...
-  });
-
-  app.use(express.static("public"));
+    console.log(`Server läuft auf Port ${port}`);
+});
