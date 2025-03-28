@@ -151,4 +151,4 @@ app.listen(port, "0.0.0.0", function () {
     // ...
   });
 
-
+  app.use(express.static("public"));
