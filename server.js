@@ -139,15 +139,16 @@ app.delete('/projects/:id', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.send("GET Request Called")
-})
+app.get("/", (req, res) => {
+    res.send("Server läuft!");
+});
 
 // Definiere den HOST und PORT
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT  
 
 // Server starten
 app.listen(PORT, () => {
     console.log(`Server läuft auf Port ${PORT}`);
 });
+
 
