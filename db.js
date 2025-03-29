@@ -18,12 +18,7 @@ let db;
 const createDBConnection = async () => {
     if (!db) {
         try {
-            db = await mysql.createConnection({
-                host: process.env.DB_HOST,
-                user: process.env.DB_USER,
-                password: process.env.DB_PASSWORD,
-                database: process.env.DB_NAME
-            });
+            db = await mysql.createConnection(process.env.MYSQL_URL);
             console.log("✅ Erfolgreich mit der MySQL-Datenbank verbunden");
         } catch (err) {
             console.error("❌ Fehler bei der Verbindung zur MySQL-Datenbank:", err.message);
