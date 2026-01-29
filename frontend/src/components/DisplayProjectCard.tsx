@@ -1,6 +1,4 @@
 import { Github, Link as LinkIcon, ArrowRight } from "lucide-react";
-import { Link } from "react-router";
-
 
 interface Project {
     _id?: string;

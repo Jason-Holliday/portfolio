@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { authClient } from "../lib/auth";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -13,16 +12,29 @@ export default function ForgotPassword() {
     setLoading(true);
 
     try {
-      await authClient.forgetPassword({
-        email,
-        redirectTo: "/reset-password",
+      // Direkter API-Aufruf zu better-auth forget-password endpoint
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forget-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email,
+          redirectTo: `${window.location.origin}/reset-password`,
+        }),
       });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Fehler beim Versenden der E-Mail");
+      }
       
       setSent(true);
       toast.success("E-Mail wurde versendet! Überprüfe dein Postfach.");
     } catch (error: any) {
       console.error("Fehler:", error);
-      toast.error("Fehler beim Versenden der E-Mail");
+      toast.error(error.message || "Fehler beim Versenden der E-Mail");
     } finally {
       setLoading(false);
     }

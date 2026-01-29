@@ -17,7 +17,7 @@ interface Project {
 const ProjectsPage = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1); // setCurrentPage entfernt
   const projectsPerPage = 6;
 
   const indexOfLastProject = currentPage * projectsPerPage;

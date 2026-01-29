@@ -2,7 +2,7 @@
 import { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
 import { authClient } from "../lib/auth";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  // navigate entfernt, da du window.location.href verwendest
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({

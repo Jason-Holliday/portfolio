@@ -26,6 +26,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
+    // Diese Funktion wird automatisch von forgetPassword aufgerufen
     sendResetPassword: async ({ user, url, token }) => {
       try {
         const resetURL = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;

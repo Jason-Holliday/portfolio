@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Footer = () => {
   return (
     <footer className="w-full bg-primary border-t border-secondary/50">
