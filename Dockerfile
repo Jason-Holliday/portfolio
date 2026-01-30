@@ -3,16 +3,19 @@
 # ========================================
 FROM node:20-alpine AS builder
 
+# Arbeitsverzeichnis
 WORKDIR /app
 
-# Kopiere package files und installiere Dependencies
+# Kopiere package.json und package-lock.json aus dem Frontend
 COPY frontend/package*.json ./
+
+# Installiere Dependencies sauber
 RUN npm ci
 
-# Kopiere den Frontend Source Code
+# Kopiere den Frontend-Sourcecode
 COPY frontend/ ./
 
-# Build die Production Version
+# Build für Production
 RUN npm run build
 
 # ========================================
@@ -23,11 +26,11 @@ FROM nginx:alpine
 # Kopiere die gebaute App vom Builder
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Kopiere Nginx Konfiguration
+# Kopiere deine Nginx-Konfiguration
 COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exponiere Port 80
 EXPOSE 80
 
-# Starte Nginx
-CMD ["bash", "-c", "npm run start"]
+# Starte Nginx (Production)
+CMD ["nginx", "-g", "daemon off;"]
